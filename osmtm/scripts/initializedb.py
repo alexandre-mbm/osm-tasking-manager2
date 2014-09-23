@@ -31,8 +31,11 @@ import shapely
 
 
 def main():
-    setup_logging('development.ini')
-    settings = get_appsettings('development.ini')
+    from os.path import dirname, abspath
+    ini_dir = abspath(dirname(abspath(__file__)) + '../../../') + '/'
+
+    setup_logging(ini_dir + 'development.ini')
+    settings = get_appsettings(ini_dir + 'development.ini')
 
     load_local_settings(settings)
 
@@ -60,7 +63,7 @@ def main():
     # version table, "stamping" it with the most recent rev:
     from alembic.config import Config
     from alembic import command
-    alembic_cfg = Config("alembic.ini")
+    alembic_cfg = Config(ini_dir + "alembic.ini")
     url = settings['sqlalchemy.url']
     alembic_cfg.set_section_option("alembic", "sqlalchemy.url", url)
     command.stamp(alembic_cfg, "head")
