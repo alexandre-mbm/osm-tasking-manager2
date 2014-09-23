@@ -1,0 +1,12 @@
+#!/bin/bash
+
+(
+  echo [app:main]
+  echo sqlalchemy.url = $OPENSHIFT_POSTGRESQL_DB_URL/$PGDATABASE
+) >> ${OPENSHIFT_REPO_DIR}local.ini
+
+(
+  echo [server:main]
+  echo host = localhost
+  echo port = 8051
+) >> ${OPENSHIFT_REPO_DIR}local.ini

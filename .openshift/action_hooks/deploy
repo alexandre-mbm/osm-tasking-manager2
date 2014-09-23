@@ -1,0 +1,5 @@
+#!/bin/bash
+
+psql -d $PGDATABASE -c "CREATE EXTENSION IF NOT EXISTS postgis;"
+
+$VIRTUAL_ENV/bin/initialize_osmtm_db
