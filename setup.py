@@ -1,6 +1,7 @@
 import os
 
 from setuptools import setup, find_packages
+from babel.messages import frontend as babel
 
 here = os.path.abspath(os.path.dirname(__file__))
 README = open(os.path.join(here, 'README.md')).read()
@@ -65,4 +66,9 @@ setup(name='osmtm',
           ('templates/**.html', 'mako', None),
           ('templates/**.mako', 'mako', None),
           ('static/**', 'ignore', None)]},
+      cmdclass = {'compile_catalog': babel.compile_catalog,
+            'extract_messages': babel.extract_messages,
+            'init_catalog': babel.init_catalog,
+            'update_catalog': babel.update_catalog}
       )
+
